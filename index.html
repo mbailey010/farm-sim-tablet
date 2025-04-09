@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Sim 25 Management Tablet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="tablet-container">
+        <div class="tablet-frame">
+            <div class="tablet-screen">
+                <div class="tablet-header">
+                    <div class="status-bar">
+                        <span class="time" id="current-time">12:00</span>
+                        <div class="status-icons">
+                            <i class="fas fa-wifi"></i>
+                            <i class="fas fa-battery-three-quarters"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tablet-content">
+                    <div class="app-header">
+                        <h1>Farm Management</h1>
+                        <div class="weather-widget" id="weather-widget">
+                            <i class="fas fa-sun"></i>
+                            <span>21°C</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard" id="dashboard">
+                        <div class="dashboard-tiles">
+                            <div class="tile" data-section="fields">
+                                <i class="fas fa-seedling"></i>
+                                <span>Fields</span>
+                            </div>
+                            <div class="tile" data-section="animals">
+                                <i class="fas fa-cow"></i>
+                                <span>Animals</span>
+                            </div>
+                            <div class="tile" data-section="tasks">
+                                <i class="fas fa-tasks"></i>
+                                <span>Tasks</span>
+                            </div>
+                            <div class="tile" data-section="equipment">
+                                <i class="fas fa-tractor"></i>
+                                <span>Equipment</span>
+                            </div>
+                            <div class="tile" data-section="finances">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Finances</span>
+                            </div>
+                            <div class="tile" data-section="settings">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fields Section -->
+                    <div class="section-content" id="fields-section">
+                        <div class="section-header">
+                            <h2>Fields</h2>
+                            <button class="add-button" id="add-field-btn">
+                                <i class="fas fa-plus"></i> Add Field
+                            </button>
+                        </div>
+                        
+                        <div class="fields-list" id="fields-list">
+                            <!-- Fields will be populated here -->
+                        </div>
+                        
+                        <div class="field-details" id="field-details">
+                            <!-- Field details will be shown here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Animals Section -->
+                    <div class="section-content" id="animals-section">
+                        <div class="section-header">
+                            <h2>Animals</h2>
+                            <button class="add-button" id="add-animal-btn">
+                                <i class="fas fa-plus"></i> Add Animals
+                            </button>
+                        </div>
+                        
+                        <div class="animals-list" id="animals-list">
+                            <!-- Animals will be populated here -->
+                        </div>
+                        
+                        <div class="animal-details" id="animal-details">
+                            <!-- Animal details will be shown here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Tasks Section -->
+                    <div class="section-content" id="tasks-section">
+                        <div class="section-header">
+                            <h2>Tasks</h2>
+                            <button class="add-button" id="add-task-btn">
+                                <i class="fas fa-plus"></i> Add Task
+                            </button>
+                        </div>
+                        
+                        <div class="tasks-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="completed">Completed</button>
+                        </div>
+                        
+                        <div class="tasks-list" id="tasks-list">
+                            <!-- Tasks will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Equipment Section -->
+                    <div class="section-content" id="equipment-section">
+                        <div class="section-header">
+                            <h2>Equipment</h2>
+                            <button class="add-button" id="add-equipment-btn">
+                                <i class="fas fa-plus"></i> Add Equipment
+                            </button>
+                        </div>
+                        
+                        <div class="equipment-list" id="equipment-list">
+                            <!-- Equipment will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Finances Section -->
+                    <div class="section-content" id="finances-section">
+                        <div class="section-header">
+                            <h2>Finances</h2>
+                        </div>
+                        
+                        <div class="finance-summary">
+                            <div class="balance-card">
+                                <h3>Current Balance</h3>
+                                <div class="balance-amount" id="current-balance">$125,000</div>
+                            </div>
+                            
+                            <div class="finance-charts">
+                                <div class="chart-container">
+                                    <h3>Income vs Expenses</h3>
+                                    <div class="placeholder-chart">Chart Placeholder</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="transactions">
+                            <h3>Recent Transactions</h3>
+                            <div class="transactions-list" id="transactions-list">
+                                <!-- Transactions will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Section -->
+                    <div class="section-content" id="settings-section">
+                        <div class="section-header">
+                            <h2>Settings</h2>
+                        </div>
+                        
+                        <div class="settings-options">
+                            <div class="setting-item">
+                                <span>Dark Mode</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="dark-mode-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-item">
+                                <span>Data Backup</span>
+                                <button class="backup-btn" id="backup-data-btn">Backup Data</button>
+                            </div>
+                            
+                            <div class="setting-item">
+                                <span>Import Data</span>
+                                <input type="file" id="import-data-input" accept=".json">
+                                <label for="import-data-input" class="import-btn">Import</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tablet-nav">
+                    <button class="nav-btn" id="home-btn">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <button class="nav-btn" id="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Templates -->
+    <div class="modal" id="add-field-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Field</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-field-form">
+                    <div class="form-group">
+                        <label for="field-number">Field Number</label>
+                        <input type="number" id="field-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-size">Size (hectares)</label>
+                        <input type="number" id="field-size" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-crop">Current Crop</label>
+                        <select id="field-crop">
+                            <option value="None">None</option>
+                            <option value="Wheat">Wheat</option>
+                            <option value="Barley">Barley</option>
+                            <option value="Canola">Canola</option>
+                            <option value="Corn">Corn</option>
+                            <option value="Soybeans">Soybeans</option>
+                            <option value="Sunflowers">Sunflowers</option>
+                            <option value="Potatoes">Potatoes</option>
+                            <option value="Sugar Beet">Sugar Beet</option>
+                            <option value="Cotton">Cotton</option>
+                            <option value="Oats">Oats</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-notes">Notes</label>
+                        <textarea id="field-notes"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Field</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="add-animal-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Animals</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-animal-form">
+                    <div class="form-group">
+                        <label for="animal-type">Animal Type</label>
+                        <select id="animal-type" required>
+                            <option value="cows">Cows</option>
+                            <option value="pigs">Pigs</option>
+                            <option value="sheep">Sheep</option>
+                            <option value="chickens">Chickens</option>
+                            <option value="horses">Horses</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="animal-count">Count</label>
+                        <input type="number" id="animal-count" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="animal-location">Location</label>
+                        <input type="text" id="animal-location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="animal-notes">Notes</label>
+                        <textarea id="animal-notes"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Animals</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="add-task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-task-form">
+                    <div class="form-group">
+                        <label for="task-description">Description</label>
+                        <input type="text" id="task-description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date</label>
+                        <input type="date" id="task-due-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="add-equipment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Equipment</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-equipment-form">
+                    <div class="form-group">
+                        <label for="equipment-name">Name</label>
+                        <input type="text" id="equipment-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipment-type">Type</label>
+                        <select id="equipment-type" required>
+                            <option value="tractor">Tractor</option>
+                            <option value="harvester">Harvester</option>
+                            <option value="seeder">Seeder</option>
+                            <option value="plow">Plow</option>
+                            <option value="cultivator">Cultivator</option>
+                            <option value="sprayer">Sprayer</option>
+                            <option value="trailer">Trailer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipment-price">Purchase Price</label>
+                        <input type="number" id="equipment-price" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="equipment-notes">Notes</label>
+                        <textarea id="equipment-notes"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Equipment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
